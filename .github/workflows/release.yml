@@ -10,12 +10,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        - target: x86_64-pc-windows-gnu
-          archive: zip
-        - target: x86_64-apple-darwin
-          archive: zip tar.gz 
-        - target: x86_64-unknown-linux-musl
-          archive: tar.gz tar.xz
+        include:
+            - target: x86_64-pc-windows-gnu
+              archive: zip
+            - target: x86_64-apple-darwin
+              archive: zip tar.gz 
+            - target: x86_64-unknown-linux-musl
+              archive: tar.gz tar.xz
     steps:
       - uses: actions/checkout@master
       - name: Compile and release
