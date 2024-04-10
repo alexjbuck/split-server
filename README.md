@@ -1,5 +1,9 @@
 # Split Server
 
+[![Release](https://github.com/alexjbuck/split-server/actions/workflows/release.yml/badge.svg)](https://github.com/alexjbuck/split-server/actions/workflows/release.yml)
+[![Security audit](https://github.com/alexjbuck/split-server/actions/workflows/security-audit.yml/badge.svg)](https://github.com/alexjbuck/split-server/actions/workflows/security-audit.yml)
+[![Build & Test](https://github.com/alexjbuck/split-server/actions/workflows/check-and-test.yml/badge.svg)](https://github.com/alexjbuck/split-server/actions/workflows/check-and-test.yml)
+
 ## API
 
 This server has the following API:
