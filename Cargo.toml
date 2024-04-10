@@ -2,6 +2,13 @@
 name = "split-server"
 version = "0.1.2"
 edition = "2021"
+authors = ["Alex <abuck@spear.ai>"]
+description = "A lightweight webserver to serve a specific data mapping."
+rust-version = "1.77.2"
+readme = "README.md"
+repository = "https://github.com/alexjbuck/split-server"
+license = "MIT"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
