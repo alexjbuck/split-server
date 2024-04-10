@@ -44,10 +44,10 @@ The format is:
 ## Splits
 
 There are 4 splits definitions this API implements:
-1. "train" => DataSplit::Train
-1. "validation" => DataSplit::Validation
-1. "test" => DataSplit::Test
-1. _ => DataSplit::Unknown
+1. `train` => `DataSplit::Train`
+1. `validation` => `DataSplit::Validation`
+1. `test` => `DataSplit::Test`
+1. `_` => `DataSplit::Unknown`
 
 The _ case represents a catchall case.
 Example:
