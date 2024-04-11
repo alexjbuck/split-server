@@ -63,13 +63,13 @@ Example:
 ```
 ## Getting started
 
-Download the release binary `split-server`. Create a folder named `static` and
-place a csv named `data.csv` in the `static` folder. The webserver will read
-this file when handling queries.
+Download the release archive and extract it. In the folder named `static` edit
+the csv file named `data.csv` to reflect your datasets/splits. The webserver will
+read this file when handling queries.
 
 Folder structure
 ```
-- split-server
+- split-server(.exe)
 - static\
   - data.csv
 ```
@@ -78,7 +78,7 @@ Then simply run `split-server`.
 
 ## Updating list
 
-Replace the `data.csv` file with a new one.
+Replace the `data.csv` file with an updated one, following the same format.
 
 ## CSV Format
 The required CSV format is 
