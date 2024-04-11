@@ -11,10 +11,10 @@ pub enum DataSplit {
 impl From<&str> for DataSplit {
     fn from(s: &str) -> DataSplit {
         match s {
-            "train" => DataSplit::Train,
-            "test" => DataSplit::Test,
-            "validation" => DataSplit::Validation,
-            &_ => DataSplit::Unknown,
+            "train" | "Train" | "training" | "Training" => DataSplit::Train,
+            "test" | "Test" => DataSplit::Test,
+            "validation" | "Validation" | "val" | "Val" => DataSplit::Validation,
+            _ => DataSplit::Unknown,
         }
     }
 }
@@ -83,6 +83,26 @@ mod test {
         assert_eq!(dataset.get_splits_for("r2"), vec![DataSplit::Test]);
     }
     #[test]
+    fn test_get_unknown_splits() {
+        let r1 = Record {
+            name: "r1".to_string(),
+            split: DataSplit::Train,
+        };
+        let r2 = Record {
+            name: "r2".to_string(),
+            split: DataSplit::Test,
+        };
+        let list = vec![r1, r2];
+        let dataset = Dataset { list };
+        assert_eq!(dataset.get_splits_for("r3"), vec![]);
+    }
+    #[test]
+    fn test_get_empty_splits() {
+        let list = Vec::<Record>::new();
+        let dataset = Dataset { list };
+        assert_eq!(dataset.get_splits_for("r2"), vec![]);
+    }
+    #[test]
     fn test_get_names() {
         let r1 = Record {
             name: "r1".to_string(),
@@ -95,8 +115,33 @@ mod test {
         let list = vec![r1, r2];
         let dataset = Dataset { list };
         assert_eq!(
-            dataset.get_names_for(DataSplit::Train),
-            vec!["r1".to_string()]
+            dataset.get_names_for(DataSplit::Test),
+            vec!["r2".to_string()]
         );
+    }
+    #[test]
+    fn test_get_empty_names() {
+        let list = Vec::<Record>::new();
+        let dataset = Dataset { list };
+        assert_eq!(
+            dataset.get_names_for(DataSplit::Train),
+            Vec::<String>::new()
+        );
+    }
+    #[test]
+    fn test_from_str() {
+        assert_eq!(DataSplit::from("train"), DataSplit::Train);
+        assert_eq!(DataSplit::from("Train"), DataSplit::Train);
+        assert_eq!(DataSplit::from("training"), DataSplit::Train);
+        assert_eq!(DataSplit::from("Training"), DataSplit::Train);
+        assert_eq!(DataSplit::from("test"), DataSplit::Test);
+        assert_eq!(DataSplit::from("Test"), DataSplit::Test);
+        assert_eq!(DataSplit::from("validation"), DataSplit::Validation);
+        assert_eq!(DataSplit::from("Validation"), DataSplit::Validation);
+        assert_eq!(DataSplit::from("val"), DataSplit::Validation);
+        assert_eq!(DataSplit::from("Val"), DataSplit::Validation);
+        assert_eq!(DataSplit::from("sdf"), DataSplit::Unknown);
+        assert_eq!(DataSplit::from("asdf123-__!^&*("), DataSplit::Unknown);
+        assert_eq!(DataSplit::from(""), DataSplit::Unknown);
     }
 }
